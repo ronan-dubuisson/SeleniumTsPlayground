@@ -1,0 +1,10 @@
+{
+  "reporter": "mochawesome",
+  "reporter-options": [
+    "reportDir=testReports/E2E",
+    "reportFilename=[datetime]_E2E_Tests,charts",
+    "json=false",
+    "showPassed:false",
+    "timestamp=yyyy-mm-dd HH:MM:ss"
+  ]
+}
