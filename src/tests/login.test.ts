@@ -1,10 +1,10 @@
 import {after, afterEach, beforeEach, before} from 'mocha';
-import {expect} from 'chai';
-import {Builder, until} from 'selenium-webdriver';
+import {assert} from 'chai';
+import {Builder} from 'selenium-webdriver';
 import {LoginPage} from '../pom/login.page.js';
 import addContext from 'mochawesome/addContext.js';
 
-describe('sandwich order', function () {
+describe('login', function () {
   //test suite
   this.timeout(10000);
   let loginpage: LoginPage;
@@ -37,17 +37,9 @@ describe('sandwich order', function () {
     await loginpage.enterPsw('secret_sauce');
     await loginpage.clickLoginButton();
 
-    await loginpage.driver.wait(
-      until.urlContains('https://www.saucedemo.com/inventory.html'),
-      5000,
+    await loginpage.waitUntilUrlIs(
+      loginpage.URL_ON_SUCESS_LOGIN,
+      loginpage.LOGIN_TIMEOUT,
     );
-
-    expect(await loginpage.currentUrl()).equal(
-      'https://www.saucedemo.com/inventory.html',
-    );
-  });
-
-  it('login locked out user', async function () {
-   
   });
 });

@@ -12,7 +12,8 @@
   "scripts": {
     "test": "mocha out/tests --config .mocharc.json",
     "prettier": "npx prettier --write .",
-    "eslint": "npx eslint src"
+    "eslint": "npx eslint src",
+    "compile": "rm -r out && tsc"
   },
   "devDependencies": {
     "@eslint/js": "^9.12.0",

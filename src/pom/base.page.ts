@@ -1,4 +1,4 @@
-import {Locator, WebDriver} from 'selenium-webdriver';
+import {Locator, until, WebDriver} from 'selenium-webdriver';
 import {Screenshot} from '../utils/screenshot.js';
 
 export class BasePage {
@@ -41,6 +41,15 @@ export class BasePage {
   async takeScreenshot(testName?: string) {
     await this.screenshot.save(this.driver, testName);
     return this.screenshot.get();
+  }
+
+  async elementIsVisible(locator: Locator) {
+    await this.driver.wait(until.elementIsVisible(locator));
+    return this.driver.wait(until.elementIsVisible(locator));
+  }
+
+  async waitUntilUrlIs(url: string, timeout: number) {
+    return this.driver.wait(until.urlIs(url), timeout);
   }
 
   async close() {
