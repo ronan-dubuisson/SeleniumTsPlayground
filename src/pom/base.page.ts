@@ -1,4 +1,4 @@
-import {Locator, until, WebDriver} from 'selenium-webdriver';
+import {Locator, until, WebDriver, WebElement} from 'selenium-webdriver';
 import {Screenshot} from '../utils/screenshot.js';
 
 export class BasePage {
@@ -7,6 +7,7 @@ export class BasePage {
 
   constructor(driver: WebDriver) {
     this.driver = driver;
+    this.driver.manage().window().maximize();
     this.screenshot = new Screenshot();
   }
 
@@ -30,6 +31,10 @@ export class BasePage {
     return this.driver.findElement(locator).click();
   }
 
+  async getPlaceholderText(locator: Locator) {
+    const element: WebElement = this.driver.findElement(locator);
+    return element.getAttribute('placeholder');
+  }
   async getText(locator: Locator) {
     return this.driver.findElement(locator).getText();
   }
@@ -43,13 +48,21 @@ export class BasePage {
     return this.screenshot.get();
   }
 
-  async elementIsVisible(locator: Locator) {
-    await this.driver.wait(until.elementIsVisible(locator));
-    return this.driver.wait(until.elementIsVisible(locator));
+  async elementIsOnPage(locator: Locator) {
+    try {
+      await this.driver.findElement(locator);
+      return true;
+    } catch (e) {
+      return false;
+    }
   }
 
-  async waitUntilUrlIs(url: string, timeout: number) {
+  async waitUntilUrlIs(url: string, timeout?: number) {
     return this.driver.wait(until.urlIs(url), timeout);
+  }
+
+  async waitUntilDisplayed(locator: Locator, timeout?: number) {
+    return this.driver.wait(until.elementLocated(locator), timeout);
   }
 
   async close() {

@@ -10,7 +10,7 @@
   "license": "Apache-2.0",
   "keywords": [],
   "scripts": {
-    "test": "mocha out/tests --config .mocharc.json",
+    "test": "rm -r out && tsc && mocha out/tests --config .mocharc.json",
     "prettier": "npx prettier --write .",
     "eslint": "npx eslint src",
     "compile": "rm -r out && tsc"
