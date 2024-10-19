@@ -2,7 +2,7 @@ import {after, afterEach, beforeEach, before} from 'mocha';
 import {expect} from 'chai';
 import {Builder} from 'selenium-webdriver';
 import addContext from 'mochawesome/addContext.js';
-import { LoginPage } from '../pom/login.page';
+import { LoginPage } from '../pom/login.page.js';
 
 describe('login', function () {
   //test suite
@@ -17,7 +17,7 @@ describe('login', function () {
     //setup
     const browser = new Builder().forBrowser('chrome').build();
     loginPage = new LoginPage(browser);
-    loginPage.visit('https://www.saucedemo.com/');
+    loginPage.open();
     loginPage.validatePage();
   }); //before each test
 

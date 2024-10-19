@@ -4,9 +4,8 @@ import {BasePage} from './base.page.js';
 export class LoginPage extends BasePage {
   //constants
   private readonly PAGE_TITLE: string = 'Swag Labs';
-  private readonly URL_AFTER_SUCESS_LOGIN =
-    'https://www.saucedemo.com/inventory.html';
-  private readonly LOGIN_TIMEOUT = 10000; //in milliseconds
+  private readonly URL = "https://www.saucedemo.com/";
+  
 
   //locators
   private readonly loginForm: Locator = By.css(
@@ -38,6 +37,9 @@ export class LoginPage extends BasePage {
 
   constructor(driver: WebDriver) {
     super(driver);
+  }
+  async open(){
+    this.visit(this.URL);
   }
 
   async validatePage() {
