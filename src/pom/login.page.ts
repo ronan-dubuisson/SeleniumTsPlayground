@@ -34,7 +34,7 @@ export class LoginPage extends BasePage {
   public readonly ERROR_WRONG_CREDENTIALS: string =
     'Epic sadface: Username and password do not match any user in this service';
   public readonly ERROR_LOCKED_USER: string =
-    'Epic sadface: Sorry, this user has been locked out. ';
+    'Epic sadface: Sorry, this user has been locked out.';
 
   constructor(driver: WebDriver) {
     super(driver);
